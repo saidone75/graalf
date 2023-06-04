@@ -1,44 +1,30 @@
 # anvedi
 
-FIXME: description
+A testbed project using CRAL library for interacting with Alfresco. Compatible with GraalVM.
 
-## Installation
-
-Download from http://example.com/FIXME.
-
-## Usage
-
-FIXME: explanation
-
-    $ java -jar anvedi-0.1.0-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
-
-## License
-
-Copyright © 2023 FIXME
-
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
-
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+### Build
+get the sources:
+```console
+$ git clone https://github.com/saidone75/anvedi.git
+```
+produce an uberjar with leiningen:
+```console
+$ cd anvedi
+$ lein uberjar
+Compiling anvedi.utils
+[...]
+Created /home/saidone/anvedi/target/uberjar/anvedi-0.1.0-SNAPSHOT.jar
+Created /home/saidone/anvedi/target/uberjar/anvedi-0.1.0-SNAPSHOT-standalone.jar
+```
+create a native binary (*need a GraalVM toolchain installed and configured*):
+```console
+$ lein native-image
+========================================================================================================================
+GraalVM Native Image: Generating '/home/saidone/anvedi/target/uberjar/anvedi' (executable)...
+========================================================================================================================
+[...]
+========================================================================================================================
+Finished generating '/home/saidone/anvedi/target/uberjar/anvedi' in 1m 55s.
+Created native image /home/saidone/anvedi/target/uberjar/anvedi
+```
+and copy the executable binary (target/uberjar/anvedi) somewhere in your path
