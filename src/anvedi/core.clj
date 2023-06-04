@@ -16,4 +16,6 @@
   (try
     (c/load-config (utils/expand-home "~/.anvedi/anvedi.cfg.edn"))
     (catch Exception e (exit 1 (.getMessage e))))
+  (config/configure @c/config)
+  (config/set-log-level :trace)
   (println (auth/create-ticket "admin" "admin")))
