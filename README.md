@@ -3,7 +3,7 @@
 A testbed project using CRAL library for interacting with Alfresco. Compatible with GraalVM.
 
 ### Build
-get the sources:
+Get the sources:
 ```console
 $ git clone https://github.com/saidone75/anvedi.git
 ```
@@ -27,4 +27,8 @@ GraalVM Native Image: Generating '/home/saidone/anvedi/target/uberjar/anvedi' (e
 Finished generating '/home/saidone/anvedi/target/uberjar/anvedi' in 1m 55s.
 Created native image /home/saidone/anvedi/target/uberjar/anvedi
 ```
-and copy the executable binary (target/uberjar/anvedi) somewhere in your path
+and copy the executable binary (target/uberjar/anvedi) somewhere in your path.
+## License
+Copyright (c) 2023 Saidone
+
+Distributed under the GNU General Public License v3.0
