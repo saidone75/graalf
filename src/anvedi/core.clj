@@ -21,4 +21,5 @@
   (config/configure @c/config)
   ;; ask for a ticket and retrieve -root- node
   (let [ticket (get-in (auth/create-ticket "admin" "admin") [:body :entry])]
-    (nodes/get-node ticket "-root-")))
+    (clojure.pprint/pprint ticket)
+    (clojure.pprint/pprint (nodes/get-node ticket "-root-"))))

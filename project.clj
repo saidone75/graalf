@@ -14,8 +14,7 @@
   :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/jul-factory"]
   :target-path "target/%s"
   :native-image {:name "anvedi"
-                 :opts ["--no-server"
-                        "-J-Xmx3g"
+                 :opts ["-J-Xmx3g"
                         "--report-unsupported-elements-at-runtime"
                         "-H:EnableURLProtocols=http"
                         "-H:ReflectionConfigurationFiles=./reflectconfig.json"]}
