@@ -4,12 +4,31 @@
     [anvedi.utils :as utils]
     [cral.alfresco.config :as config]
     [cral.alfresco.auth :as auth]
-    [cral.alfresco.core.nodes :as nodes])
+    [cral.alfresco.core.nodes :as nodes]
+    [cli-matic.core :refer [run-cmd]])
   (:gen-class))
 
 (defn- exit [status msg]
   (println msg)
   (System/exit status))
+
+(defn get-ticket [parms]
+  (let [response (auth/create-ticket (:user parms) (:password parms))]
+    (if (= 201 (:status response))
+      (println (get-in response [:body :entry :id]))
+      (exit (:status response) (:message response)))))
+
+;; cli-matic config
+(def CONFIGURATION
+  {:app      {:command     c/program-name
+              :description c/program-description
+              :version     c/program-version}
+   :commands [
+              {:command     "ticket"
+               :description ["get a ticket"]
+               :opts        [{:option "user" :short "u" :default :present :type :string}
+                             {:option "password" :short "p" :default :present :type :string}]
+               :runs        get-ticket}]})
 
 (defn -main
   [& args]
@@ -19,7 +38,5 @@
     (catch Exception e (exit 1 (.getMessage e))))
   ;; configure CRAL
   (config/configure @c/config)
-  ;; ask for a ticket and retrieve -root- node
-  (let [ticket (get-in (auth/create-ticket "admin" "admin") [:body :entry])]
-    (clojure.pprint/pprint ticket)
-    (clojure.pprint/pprint (nodes/get-node ticket "-root-"))))
+
+  (run-cmd args CONFIGURATION))
