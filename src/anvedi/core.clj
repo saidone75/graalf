@@ -18,17 +18,24 @@
       (println (get-in response [:body :entry :id]))
       (exit (:status response) (:message response)))))
 
+(defn list-nodes)
+
 ;; cli-matic config
 (def CONFIGURATION
   {:app      {:command     c/program-name
               :description c/program-description
               :version     c/program-version}
-   :commands [
-              {:command     "ticket"
+   :commands [{:command     "ticket"
                :description ["get a ticket"]
                :opts        [{:option "user" :short "u" :default :present :type :string}
                              {:option "password" :short "p" :default :present :type :string}]
-               :runs        get-ticket}]})
+               :runs        get-ticket}
+              {:command     "ls"
+               :description ["list nodes"]
+               :opts        [{:option "ticket" :short "p" :type string}
+                             {:option "path" :short "p" :default :present :type :string}]
+               :runs        list-nodes}
+              ]})
 
 (defn -main
   [& args]
