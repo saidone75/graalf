@@ -29,7 +29,7 @@ Created native image /home/saidone/anvedi/target/uberjar/anvedi
 ```
 and copy the executable binary (target/uberjar/anvedi) somewhere in your path.
 
-Faaast startup!
+Fast startup!
 ```console
 $ time java -jar target/uberjar/anvedi-0.1.0-SNAPSHOT-standalone.jar ticket -u admin -p admin
 TICKET_073f37c8ff6560a97384b2211485ce93115abebf

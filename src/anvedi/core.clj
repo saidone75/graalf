@@ -50,5 +50,5 @@
     (catch Exception e (exit 1 (.getMessage e))))
   ;; configure CRAL
   (config/configure @c/config)
-
+  ;; run program
   (run-cmd args CONFIGURATION))
