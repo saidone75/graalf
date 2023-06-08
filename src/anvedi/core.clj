@@ -22,7 +22,7 @@
 
 (defn list-children
   [parms]
-  (println (nodes/list-node-children {:id (:ticket parms) :user-id (:user parms)} (:parent-id parms))))
+  (clojure.pprint/pprint (nodes/list-node-children {:id (:ticket parms) :user-id (:user parms)} (:parent-id parms))))
 
 ;; cli-matic config
 (def CONFIGURATION
@@ -50,5 +50,5 @@
     (catch Exception e (exit 1 (.getMessage e))))
   ;; configure CRAL
   (config/configure @c/config)
-
+  ;; run program
   (run-cmd args CONFIGURATION))
