@@ -8,7 +8,7 @@
                  [cli-matic "0.5.4"]
                  [com.github.clj-easy/graal-build-time "0.1.4"]
                  [jp.ne.tir/project-clj "0.1.7"]
-                 [cral "0.1.0-SNAPSHOT"]]
+                 [org.saidone/cral "0.1.1"]]
   :plugins [[io.taylorwood/lein-native-image "0.3.1"]]
   :main ^:skip-aot anvedi.core
   :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/jul-factory"]
