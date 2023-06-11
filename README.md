@@ -67,7 +67,6 @@ Authentication successful.
 real    0m1.174s
 user    0m3.317s
 sys     0m0.088s
-saidone@t14:~/workspace-alfresco/anvedi/target/uberjar$
 ```
 ## License
 Copyright (c) 2023 Saidone
