@@ -53,6 +53,7 @@ real    0m0.012s
 user    0m0.008s
 sys     0m0.004s
 ```
+Compared with standard JVM:
 ```console
 $ time ./anvedi ticket -u admin -p admin
 Authentication successful.
