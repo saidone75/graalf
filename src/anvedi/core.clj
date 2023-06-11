@@ -17,12 +17,17 @@
   [parms]
   (let [response (auth/create-ticket (:user parms) (:password parms))]
     (if (= 201 (:status response))
-      (println (get-in response [:body :entry :id]))
+      (let [ticket (get-in response [:body :entry])]
+        ;; save ticket in config atom
+        (swap! c/config assoc :ticket ticket)
+        ;; write changes to config file
+        (c/save-config)
+        (exit 0 "Authentication successful."))
       (exit (:status response) (:message response)))))
 
 (defn list-children
   [parms]
-  (clojure.pprint/pprint (nodes/list-node-children {:id (:ticket parms) :user-id (:user parms)} (:parent-id parms))))
+  (clojure.pprint/pprint (nodes/list-node-children (:ticket @c/config) (:parent-id parms))))
 
 ;; cli-matic config
 (def CONFIGURATION
@@ -36,9 +41,7 @@
                :runs        get-ticket}
               {:command     "children"
                :description ["list children"]
-               :opts        [{:option "user" :short "u" :type :string}
-                             {:option "ticket" :short "t" :type :string}
-                             {:option "parent-id" :short "p" :default :present :type :string}]
+               :opts        [{:option "parent-id" :short "i" :default :present :type :string}]
                :runs        list-children}
               ]})
 

@@ -12,10 +12,13 @@
 (def program-version (project-clj/get :version))
 (def program-description (project-clj/get :description))
 
-(defn- adjust-paths [c]
+(defn- adjust-paths
+  "Expand ~ with full path."
+  [c]
   (w/postwalk #(if (string? %) (utils/expand-home %) %) c))
 
 (defn- create-with-defaults
+  "Create a new config file with default values."
   [f]
   (let [cfg-dir (io/file (str (System/getProperty "user.home") "/.anvedi"))]
     (if-not (.exists cfg-dir) (.mkdir cfg-dir)))
@@ -23,8 +26,17 @@
            :host   "localhost"
            :port   8080}))
 
-(defn load-config [f]
+(defn load-config
+  "Load config file and overwrite config atom."
+  [f]
   (if (.exists (io/file f))
     (reset! config
             (adjust-paths (immu/load f)))
     (create-with-defaults f)))
+
+(defn save-config
+  "Save config file with the current content of config atom."
+  []
+  (spit
+    (io/file (utils/expand-home "~/.anvedi/anvedi.cfg.edn"))
+    @config))
