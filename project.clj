@@ -2,7 +2,7 @@
   :description "A testbed project using CRAL library for interacting with Alfresco. Compatible with GraalVM."
   :url "https://saidone.org"
   :license {:name "GNU General Public License v3.0"
-            :url  "https://www.eclipse.org/legal/epl-2.0/"}
+            :url  "https://www.gnu.org/licenses/gpl-3.0.txt"}
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [russellwhitaker/immuconf "0.3.0"]
                  [cli-matic "0.5.4"]
