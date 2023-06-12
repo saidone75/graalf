@@ -10,10 +10,10 @@
 
 (defn- exit
   [status msg]
-  (println msg)
+  (if-not (nil? msg) (println msg))
   (System/exit status))
 
-(defn get-ticket
+(defn authenticate
   [parms]
   (let [response (auth/create-ticket (:user parms) (:password parms))]
     (if (= 201 (:status response))
@@ -25,20 +25,28 @@
         (exit 0 "Authentication successful."))
       (exit (:status response) (:message response)))))
 
+(defn execute-authenticated
+  [f parms]
+  (if (and (not (nil? (:ticket @c/config))) (= 200 (:status (auth/validate-ticket (:ticket @c/config)))))
+    (do
+      (f parms)
+      (exit 0 nil))
+    (exit 1 "Ticket not present or expired, please authenticate.")))
+
 (defn list-children
   [parms]
-  (clojure.pprint/pprint (nodes/list-node-children (:ticket @c/config) (:parent-id parms))))
+  (execute-authenticated #(clojure.pprint/pprint (nodes/list-node-children (:ticket @c/config) (:parent-id %))) parms))
 
 ;; cli-matic config
 (def CONFIGURATION
   {:app      {:command     c/program-name
               :description c/program-description
               :version     c/program-version}
-   :commands [{:command     "ticket"
-               :description ["get a ticket"]
+   :commands [{:command     "auth"
+               :description ["authenticate"]
                :opts        [{:option "user" :short "u" :default :present :type :string}
                              {:option "password" :short "p" :default :present :type :string}]
-               :runs        get-ticket}
+               :runs        authenticate}
               {:command     "children"
                :description ["list children"]
                :opts        [{:option "parent-id" :short "i" :default :present :type :string}]
