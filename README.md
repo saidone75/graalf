@@ -1,6 +1,6 @@
 # anvedi
 
-A testbed project using CRAL library for interacting with Alfresco and compiles down to native code using GraalVM.
+A testbed project using CRAL library for interacting with Alfresco that compiles down to native code using GraalVM.
 
 ### Build
 Get the sources:
