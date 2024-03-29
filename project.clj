@@ -1,4 +1,4 @@
-(defproject anvedi "0.1.0-SNAPSHOT"
+(defproject graalf "0.1.0-SNAPSHOT"
   :description "A testbed project using CRAL library for interacting with Alfresco. Compatible with GraalVM."
   :url "https://saidone.org"
   :license {:name "GNU General Public License v3.0"
@@ -8,12 +8,12 @@
                  [cli-matic "0.5.4"]
                  [com.github.clj-easy/graal-build-time "0.1.4"]
                  [jp.ne.tir/project-clj "0.1.7"]
-                 [org.saidone/cral "0.1.1"]]
+                 [org.saidone/cral "0.2.0"]]
   :plugins [[io.taylorwood/lein-native-image "0.3.1"]]
-  :main ^:skip-aot anvedi.core
+  :main ^:skip-aot graalf.core
   :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/jul-factory"]
   :target-path "target/%s"
-  :native-image {:name "anvedi"
+  :native-image {:name "graalf"
                  :opts ["-J-Xmx3g"
                         "--report-unsupported-elements-at-runtime"
                         "-H:EnableURLProtocols=http"
