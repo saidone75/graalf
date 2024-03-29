@@ -1,4 +1,4 @@
-(ns anvedi.utils
+(ns graalf.utils
   (:require [clojure.string :as str]))
 
 (defn expand-home [path]

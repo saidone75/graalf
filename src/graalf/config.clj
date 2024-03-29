@@ -1,7 +1,7 @@
-(ns anvedi.config
-  (:require [anvedi.utils :as utils]
-            [clojure.java.io :as io]
+(ns graalf.config
+  (:require [clojure.java.io :as io]
             [clojure.walk :as w]
+            [graalf.utils :as utils]
             [immuconf.config :as immu]
             [project-clj.core :as project-clj]))
 
@@ -20,7 +20,7 @@
 (defn- create-with-defaults
   "Create a new config file with default values."
   [f]
-  (let [cfg-dir (io/file (str (System/getProperty "user.home") "/.anvedi"))]
+  (let [cfg-dir (io/file (str (System/getProperty "user.home") "/.graalf"))]
     (if-not (.exists cfg-dir) (.mkdir cfg-dir)))
   (spit f {:scheme "http"
            :host   "localhost"
@@ -38,5 +38,5 @@
   "Save config file with the current content of config atom."
   []
   (spit
-    (io/file (utils/expand-home "~/.anvedi/anvedi.cfg.edn"))
+    (io/file (utils/expand-home "~/.graalf/graalf.cfg.edn"))
     @config))

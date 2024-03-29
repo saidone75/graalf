@@ -1,6 +1,6 @@
-(ns anvedi.core-test
+(ns graalf.core-test
   (:require [clojure.test :refer :all]
-            [anvedi.core :refer :all]))
+            [graalf.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

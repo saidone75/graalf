@@ -1,7 +1,7 @@
-(ns anvedi.core
+(ns graalf.core
   (:require
-    [anvedi.config :as c]
-    [anvedi.utils :as utils]
+    [graalf.config :as c]
+    [graalf.utils :as utils]
     [cli-matic.core :refer [run-cmd]]
     [cral.alfresco.auth :as auth]
     [cral.alfresco.config :as config]
@@ -67,7 +67,7 @@
   [& args]
   ;; load configuration
   (try
-    (c/load-config (utils/expand-home "~/.anvedi/anvedi.cfg.edn"))
+    (c/load-config (utils/expand-home "~/.graalf/graalf.cfg.edn"))
     (catch Exception e (exit 1 (.getMessage e))))
   ;; configure CRAL
   (config/configure @c/config)

@@ -5,38 +5,38 @@ A testbed project using CRAL library for interacting with Alfresco that compiles
 ### Build
 Get the sources:
 ```console
-$ git clone https://github.com/saidone75/anvedi.git
+$ git clone https://github.com/saidone75/graalf.git
 ```
 produce an uberjar with leiningen:
 ```console
-$ cd anvedi
+$ cd graalf
 $ lein uberjar
-Compiling anvedi.utils
+Compiling graalf.utils
 [...]
-Created /home/saidone/anvedi/target/uberjar/anvedi-0.1.0-SNAPSHOT.jar
-Created /home/saidone/anvedi/target/uberjar/anvedi-0.1.0-SNAPSHOT-standalone.jar
+Created /home/saidone/graalf/target/uberjar/graalf-0.1.0-SNAPSHOT.jar
+Created /home/saidone/graalf/target/uberjar/graalf-0.1.0-SNAPSHOT-standalone.jar
 ```
 create a native binary (*need a GraalVM toolchain installed and configured*):
 ```console
 $ lein native-image
 ========================================================================================================================
-GraalVM Native Image: Generating '/home/saidone/anvedi/target/uberjar/anvedi' (executable)...
+GraalVM Native Image: Generating '/home/saidone/graalf/target/uberjar/graalf' (executable)...
 ========================================================================================================================
 [...]
 ========================================================================================================================
-Finished generating '/home/saidone/anvedi/target/uberjar/anvedi' in 1m 55s.
-Created native image /home/saidone/anvedi/target/uberjar/anvedi
+Finished generating '/home/saidone/graalf/target/uberjar/graalf' in 1m 55s.
+Created native image /home/saidone/graalf/target/uberjar/graalf
 ```
-and copy the executable binary (target/uberjar/anvedi) somewhere in your path.
+and copy the executable binary (target/uberjar/graalf) somewhere in your path.
 
 Fast startup!
 ```console
-$ time ./anvedi --help
+$ time ./graalf --help
 NAME:
- anvedi - A testbed project using CRAL library for interacting with Alfresco. Compatible with GraalVM.
+ graalf - A testbed project using CRAL library for interacting with Alfresco. Compatible with GraalVM.
 
 USAGE:
- anvedi [global-options] command [command options] [arguments...]
+ graalf [global-options] command [command options] [arguments...]
 
 VERSION:
  0.1.0-SNAPSHOT
@@ -55,13 +55,13 @@ sys     0m0.004s
 ```
 Compared with standard JVM:
 ```console
-$ time ./anvedi ticket -u admin -p admin
+$ time ./graalf ticket -u admin -p admin
 Authentication successful.
 
 real    0m0.079s
 user    0m0.000s
 sys     0m0.014s
-$ time java -jar anvedi-0.1.0-SNAPSHOT-standalone.jar ticket -u admin -p admin
+$ time java -jar graalf-0.1.0-SNAPSHOT-standalone.jar ticket -u admin -p admin
 Authentication successful.
 
 real    0m1.174s
