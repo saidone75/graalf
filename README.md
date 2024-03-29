@@ -68,6 +68,9 @@ real    0m1.174s
 user    0m3.317s
 sys     0m0.088s
 ```
+Quick demo session:
+
+[![asciicast](https://asciinema.org/a/649649.svg)](https://asciinema.org/a/649649)
 ## License
 Copyright (c) 2023-2024 Saidone
 
