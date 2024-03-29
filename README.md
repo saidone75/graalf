@@ -1,4 +1,4 @@
-# anvedi
+# graalf
 
 A testbed project using CRAL library for interacting with Alfresco that compiles down to native code using GraalVM.
 
@@ -69,6 +69,6 @@ user    0m3.317s
 sys     0m0.088s
 ```
 ## License
-Copyright (c) 2023 Saidone
+Copyright (c) 2023-2024 Saidone
 
 Distributed under the GNU General Public License v3.0
