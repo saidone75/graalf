@@ -3,9 +3,9 @@
     [graalf.config :as c]
     [graalf.utils :as utils]
     [cli-matic.core :refer [run-cmd]]
-    [cral.alfresco.auth :as auth]
-    [cral.alfresco.config :as config]
-    [cral.alfresco.core.nodes :as nodes])
+    [cral.api.auth :as auth]
+    [cral.config :as config]
+    [cral.api.core.nodes :as nodes])
   (:gen-class))
 
 (defn- exit
@@ -14,8 +14,8 @@
   (System/exit status))
 
 (defn- authenticate
-  [parms]
-  (let [response (auth/create-ticket (:user parms) (:password parms))]
+  [params]
+  (let [response (auth/create-ticket (:user params) (:password params))]
     (if (= 201 (:status response))
       (let [ticket (get-in response [:body :entry])]
         ;; save ticket in config atom
@@ -26,25 +26,25 @@
       (exit (:status response) (:message response)))))
 
 (defn- execute-authenticated
-  "Execute f with parms only if a valid ticket is present on config atom."
-  [f parms]
+  "Execute f with params only if a valid ticket is present on config atom."
+  [f params]
   (if (and (not (nil? (:ticket @c/config))) (= 200 (:status (auth/validate-ticket (:ticket @c/config)))))
     (do
-      (f parms)
+      (f params)
       (exit 0 nil))
     (exit 1 "Ticket not present or expired, please (re)authenticate.")))
 
 (defn- list-children
-  [parms]
+  [params]
   (execute-authenticated
     (fn
-      [parms]
-      (if (:json parms)
-        (clojure.pprint/pprint (nodes/list-node-children (:ticket @c/config) (:parent-id parms)))
+      [params]
+      (if (:json params)
+        (clojure.pprint/pprint (nodes/list-node-children (:ticket @c/config) (:parent-id params)))
         (run!
           #(println (format "%1s %36s %s" (utils/type-to-letter (:node-type %)) (:id %) (:name %)))
-          (map :entry (get-in (nodes/list-node-children (:ticket @c/config) (:parent-id parms)) [:body :list :entries])))))
-    parms))
+          (map :entry (get-in (nodes/list-node-children (:ticket @c/config) (:parent-id params)) [:body :list :entries])))))
+    params))
 
 ;; cli-matic config
 (def CONFIGURATION
