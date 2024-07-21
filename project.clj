@@ -19,7 +19,7 @@
   :url "https://saidone.org"
   :license {:name "GNU General Public License v3.0"
             :url  "https://www.gnu.org/licenses/gpl-3.0.txt"}
-  :dependencies [[org.clojure/clojure "1.11.2"]
+  :dependencies [[org.clojure/clojure "1.11.3"]
                  [russellwhitaker/immuconf "0.3.0"]
                  [cli-matic "0.5.4"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
