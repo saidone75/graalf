@@ -24,7 +24,7 @@
                  [cli-matic "0.5.4"]
                  [com.github.clj-easy/graal-build-time "1.0.5"]
                  [jp.ne.tir/project-clj "0.1.7"]
-                 [org.saidone/cral "0.3.0"]]
+                 [org.saidone/cral "0.3.5"]]
   :plugins [[io.taylorwood/lein-native-image "0.3.1"]]
   :main ^:skip-aot graalf.core
   :jvm-opts ["-Dclojure.tools.logging.factory=clojure.tools.logging.impl/jul-factory"]
